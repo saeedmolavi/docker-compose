@@ -1,0 +1,68 @@
+
+
+networks:
+    wp_net:
+        name: wp_net
+        external: false
+
+volumes:
+  app1:
+    name: app1
+  app2:
+    name: app2
+  lb:
+    name: lb
+  db:
+    name: db
+  saeed:
+    name: saeed
+    
+
+services:
+
+    load-balancer:
+      image: latest-template:latest
+      container_name: lb.sudoer.net
+      hostname: lb.sudoer.net
+      restart: always
+      networks:
+        - wp_net
+      command: tail -f /dev/null
+      
+
+    db-sudoers:
+      image: latest-template:latest
+      container_name: db.sudoer.net
+      hostname: db.sudoer.net
+      restart: always
+      networks:
+        - wp_net
+      command: tail -f /dev/null
+
+
+    app1.sudoers:
+      image: latest-template:latest
+      container_name: app1.sudoer.net
+      hostname: app1.sudoer.net
+      restart: always
+      networks:
+        - wp_net
+      command: tail -f /dev/null
+        
+    app2.sudoers:
+      image: latest-template:latest
+      container_name: app2.sudoer.net
+      hostname: app2.sudoer.net
+      restart: always
+      networks:
+        - wp_net
+      command: tail -f /dev/null
+
+    saeed:
+      image: latest-template:latest
+      container_name: saeed-manager
+      hostname: saeed-manager
+      restart: always
+      networks:
+        - wp_net
+      command: tail -f /dev/null
